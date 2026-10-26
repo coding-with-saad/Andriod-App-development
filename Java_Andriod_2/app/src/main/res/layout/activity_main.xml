@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3F51B5"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/Counter"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:background="#FFFFFF"
+        android:gravity="center_horizontal"
+        android:text="Counter App"
+        android:textColor="#FF0707"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.08" />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="184dp"
+        android:layout_height="190dp"
+        android:layout_marginTop="56dp"
+        android:gravity="center"
+        android:text="99"
+        android:textColor="#FFFFFF"
+        android:textSize="150sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Counter" />
+
+    <Button
+        android:id="@+id/btncount"
+        android:layout_width="178dp"
+        android:layout_height="119dp"
+        android:backgroundTint="#32A091"
+        android:gravity="center"
+        android:text="Count"
+        android:textColorLink="#03FFE1"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/Down"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/number"
+        app:layout_constraintVertical_bias="0.5"
+        app:rippleColor="#FF0D0D" />
+
+    <Button
+        android:id="@+id/Down"
+        android:layout_width="115dp"
+        android:layout_height="87dp"
+        android:backgroundTint="#A66969"
+        android:gravity="center"
+        android:text="Reset"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btncount"
+        app:layout_constraintVertical_bias="0.5" />
+</androidx.constraintlayout.widget.ConstraintLayout>
