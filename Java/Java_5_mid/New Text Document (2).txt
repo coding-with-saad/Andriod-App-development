@@ -1,0 +1,1125 @@
+humara open ended paper ha tum ne muje step by step sb cheeze batani hain neeche wali reqyuirment ko dekh ke
+a)A splach scree showing the app logo for a few seconds before launching the main screen
+b) A main activity implemented using a proper layout(Linear layout or Constartriants layout) that welcomes the user by showing the toast message when user click the button
+C)Now mAKEE A FORM that should include the fields with the UserName,User Email,User Address,User password and a check box along with submit button
+D)When user click the submit button it will move to the next activity and shows the complete information added by the user in form
+E) also implement shared prefrence to remember the data entered by the user in the form and identify the efficient usage of activity life cycle
+
+F)implement intents to move b/w  activites (E.g from splash -> Main -> Detail Activity)
+
+
+agr tumara mere se koi question ha to pouch loo agr nahi too to the point answer likho pehle structure batao uper wali description ko dekh ke os ke baad code to direct copy paste hoo ga
+har cheez batani ha to the point
+
+
+
+
+
+
+Bilkul\! Main tumhein Android Studio ka complete practical step-by-step solution Roman Urdu mein samjhaunga. Code direct copy-paste hoga, aur har file ka naam bhi bataunga.
+
+Hum Java + XML (Android Studio) use karenge. Is project mein 3 Activities hongi.
+
+# 1. Project ka structure
+
+Project ka naam: `StudentFormApp`
+
+StudentFormApp
+
+app
+
+java / package name
+
+SplashActivity.java
+
+MainActivity.java
+
+DetailActivity.java
+
+res / layout
+
+activity\_splash.xml
+
+activity\_main.xml
+
+activity\_detail.xml
+
+AndroidManifest.xml
+
+# 2. App ka complete flow
+
+Splash Activity
+
+App logo – 3 seconds
+
+Main Activity
+
+Welcome message + Toast + Form
+
+Detail Activity
+
+User ki complete information
+
+Submit button par data SharedPreferences mein save hoga aur Intent se Detail Activity open hogi.
+
+# 3. Project create karna
+
+1. Android Studio open karo.
+2. New Project par click karo.
+3. Empty Views Activity select karo.
+4. Name: `StudentFormApp`
+5. Language: Java
+6. Minimum SDK: API 23 ya above.
+7. Finish par click karo.
+
+Important: Neeche diye gaye Java code mein package name `com.example.studentformapp` use kiya gaya hai. Agar tumhara package name different hai to Java files ki first line mein apna package name likhna.
+
+# 4. Splash Screen banana (Requirement A + F)
+
+Sab se pehle splash screen banayenge jo 3 seconds tak logo show karegi.
+
+### File 1: activity\_splash.xml
+
+`res → layout → activity_splash.xml` open karo aur ye code paste karo:
+
+xml
+
+```xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:text="MY APP"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:background="#3F51B5"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Student App"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:textColor="#000000"/>
+
+</LinearLayout>
+```
+
+### File 2: SplashActivity.java
+
+`java → package → SplashActivity.java` create karo.
+
+java
+
+```java
+
+package com.example.studentformapp;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+
+public class SplashActivity extends Activity {
+
+    private final Handler handler =
+            new Handler(Looper.getMainLooper());
+
+    private final Runnable splashRunnable = () -> {
+        startActivity(new Intent(
+                SplashActivity.this,
+                MainActivity.class
+        ));
+        finish();
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_splash);
+
+        handler.postDelayed(splashRunnable, 3000);
+    }
+
+    @Override
+    protected void onDestroy() {
+        handler.removeCallbacks(splashRunnable);
+        super.onDestroy();
+    }
+}
+```
+
+Samajhne wali baat:
+
+- `Handler`: delay lagata hai.
+- `3000`: 3 seconds.
+- `Intent`: Splash se Main Activity par move karta hai.
+- `finish()`: Splash Activity close karta hai.
+
+# 5. Main Activity banana (Requirement B + C)
+
+Main Activity mein hum ye cheezein banayenge:
+
+- Welcome button.
+- Username field.
+- User Email field.
+- User Address field.
+- User Password field.
+- Checkbox.
+- Submit button.
+
+### File 3: activity\_main.xml
+
+`res → layout → activity_main.xml` mein ye code paste karo.
+
+xml
+
+```xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Student Registration Form"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#3F51B5"
+            android:layout_marginBottom="15dp"/>
+
+        <Button
+            android:id="@+id/btnWelcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome"/>
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Username"
+            android:inputType="textPersonName"/>
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Email"
+            android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Address"
+            android:inputType="textPostalAddress"/>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Password"
+            android:inputType="textPassword"/>
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="I agree to the terms and conditions"/>
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_marginTop="15dp"/>
+
+    </LinearLayout>
+
+</ScrollView>
+```
+
+### File 4: MainActivity.java
+
+`MainActivity.java` mein ye complete code paste karo.
+
+java
+
+```java
+
+package com.example.studentformapp;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.CheckBox;
+import android.widget.Toast;
+
+public class MainActivity extends Activity {
+
+    EditText etName, etEmail, etAddress, etPassword;
+    CheckBox checkBox;
+    Button btnWelcome, btnSubmit;
+
+    SharedPreferences preferences;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Connect XML views
+        etName = findViewById(R.id.etName);
+        etEmail = findViewById(R.id.etEmail);
+        etAddress = findViewById(R.id.etAddress);
+        etPassword = findViewById(R.id.etPassword);
+        checkBox = findViewById(R.id.checkBox);
+
+        btnWelcome = findViewById(R.id.btnWelcome);
+        btnSubmit = findViewById(R.id.btnSubmit);
+
+        // Shared Preferences
+        preferences = getSharedPreferences(
+                "UserData", MODE_PRIVATE);
+
+        // Load previously saved data
+        etName.setText(preferences.getString("name", ""));
+        etEmail.setText(preferences.getString("email", ""));
+        etAddress.setText(preferences.getString("address", ""));
+        etPassword.setText(preferences.getString("password", ""));
+        checkBox.setChecked(
+                preferences.getBoolean("agree", false));
+
+        // Welcome Button
+        btnWelcome.setOnClickListener(v -> {
+            Toast.makeText(
+                    MainActivity.this,
+                    "Welcome to Student App!",
+                    Toast.LENGTH_SHORT
+            ).show();
+        });
+
+        // Submit Button
+        btnSubmit.setOnClickListener(v -> {
+
+            String name = etName.getText().toString().trim();
+            String email = etEmail.getText().toString().trim();
+            String address = etAddress.getText().toString().trim();
+            String password = etPassword.getText().toString();
+            boolean agree = checkBox.isChecked();
+
+            if (name.isEmpty() || email.isEmpty()
+                    || address.isEmpty() || password.isEmpty()) {
+
+                Toast.makeText(this,
+                        "Please fill all fields",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!android.util.Patterns.EMAIL_ADDRESS
+                    .matcher(email).matches()) {
+                etEmail.setError("Enter valid email");
+                return;
+            }
+
+            if (!agree) {
+                Toast.makeText(this,
+                        "Please accept terms and conditions",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Save data in SharedPreferences
+            SharedPreferences.Editor editor =
+                    preferences.edit();
+
+            editor.putString("name", name);
+            editor.putString("email", email);
+            editor.putString("address", address);
+            editor.putString("password", password);
+            editor.putBoolean("agree", agree);
+
+            editor.apply();
+
+            Toast.makeText(this,
+                    "Data Saved Successfully",
+                    Toast.LENGTH_SHORT).show();
+
+            // Move to Detail Activity
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    DetailActivity.class);
+
+            startActivity(intent);
+        });
+    }
+}
+```
+
+Is code mein important concepts:
+
+- `findViewById()`: XML controls ko Java se connect karta hai.
+- `setOnClickListener()`: Button click handle karta hai.
+- `Toast`: Short message show karta hai.
+- `SharedPreferences`: Data save karta hai.
+- `editor.apply()`: Data asynchronously save karta hai.
+- `Intent`: Main se Detail Activity open karta hai.
+
+# 6. Detail Activity banana (Requirement D + F)
+
+Ab jab user Submit button click karega to next screen par uski information show hogi.
+
+### File 5: activity\_detail.xml
+
+`res → layout → activity_detail.xml` mein paste karo.
+
+xml
+
+```xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="25dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Details"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#3F51B5"
+            android:layout_marginBottom="25dp"/>
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:id="@+id/tvPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:id="@+id/tvAgreement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+
+</ScrollView>
+```
+
+### File 6: DetailActivity.java
+
+java
+
+```java
+
+package com.example.studentformapp;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.content.SharedPreferences;
+import android.widget.TextView;
+
+public class DetailActivity extends Activity {
+
+    TextView tvName, tvEmail, tvAddress;
+    TextView tvPassword, tvAgreement;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detail);
+
+        tvName = findViewById(R.id.tvName);
+        tvEmail = findViewById(R.id.tvEmail);
+        tvAddress = findViewById(R.id.tvAddress);
+        tvPassword = findViewById(R.id.tvPassword);
+        tvAgreement = findViewById(R.id.tvAgreement);
+
+        // Get saved data
+        SharedPreferences preferences =
+                getSharedPreferences("UserData", MODE_PRIVATE);
+
+        String name = preferences.getString("name", "");
+        String email = preferences.getString("email", "");
+        String address = preferences.getString("address", "");
+        String password = preferences.getString("password", "");
+
+        boolean agree = preferences.getBoolean("agree", false);
+
+        // Display information
+        tvName.setText("Username: " + name);
+        tvEmail.setText("Email: " + email);
+        tvAddress.setText("Address: " + address);
+        tvPassword.setText("Password: " + password);
+        tvAgreement.setText("Agreement: " + agree);
+    }
+}
+```
+
+# 7. AndroidManifest.xml (Very Important)
+
+Ye file batati hai ke app mein kaunsi Activities available hain aur app kahan se start hogi.
+
+`app → manifests → AndroidManifest.xml` open karo.
+
+xml
+
+```xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:label="Student Form App"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar">
+
+        <activity
+            android:name=".DetailActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+
+    </application>
+
+</manifest>
+```
+
+Important: Launcher Activity SplashActivity hai. Is wajah se app sab se pehle Splash Screen open karegi.
+
+# 8. Activity Lifecycle (Requirement E)
+
+Exam mein ye concept zaroor likhna.
+
+Android Activity Lifecycle ke important methods:
+
+| Method | Kaam |
+| --- | --- |
+| `onCreate()` | Activity create hoti hai, layout initialize hota hai |
+| `onStart()` | Activity user ko visible hoti hai |
+| `onResume()` | Activity user ke saath interact karti hai |
+| `onPause()` | Activity partially hidden hoti hai |
+| `onStop()` | Activity completely hidden hoti hai |
+| `onDestroy()` | Activity destroy hoti hai |
+
+Humare project mein lifecycle ka usage:
+
+1. `SplashActivity` ke `onCreate()` mein splash screen show hoti hai.
+2. 3 seconds baad Intent se MainActivity open hoti hai.
+3. `MainActivity` ke `onCreate()` mein form initialize hota hai.
+4. SharedPreferences se previous data load hota hai.
+5. Submit par data save hota hai.
+6. `DetailActivity` ke `onCreate()` mein saved data display hota hai.
+7. SplashActivity ke `onDestroy()` mein pending Handler callback remove hota hai.
+
+# 9. SharedPreferences kya hai?
+
+SharedPreferences Android ka local storage mechanism hai jo small data key-value pairs mein save karta hai.
+
+Example:
+
+java
+
+```java
+SharedPreferences sp =
+    getSharedPreferences("UserData", MODE_PRIVATE);
+
+SharedPreferences.Editor editor = sp.edit();
+
+editor.putString("name", "Ali");
+editor.putString("email", "ali@gmail.com");
+
+editor.apply();
+```
+
+Data retrieve karna:
+
+java
+
+```java
+String name = sp.getString("name", "");
+String email = sp.getString("email", "");
+```
+
+Advantages:
+
+- Data app restart hone ke baad bhi available rehta hai.
+- Small data ke liye useful hai.
+- Simple aur easy to use hai.
+
+Security noteYe assignment demo password ko plain text mein save aur display karta hai. Real applications mein password ko SharedPreferences mein plain text save ya screen par display nahi karna chahiye. Secure authentication use karni chahiye.
+
+# 10. Intents kya hain?
+
+Intent Android mein ek Activity se doosri Activity par move karne ke liye use hota hai.
+
+Humare project mein 2 Intents hain:
+
+1. Splash → Main
+
+java
+
+```java
+Intent intent = new Intent(
+    SplashActivity.this,
+    MainActivity.class
+);
+
+startActivity(intent);
+```
+
+2. Main → Detail
+
+java
+
+```java
+Intent intent = new Intent(
+    MainActivity.this,
+    DetailActivity.class
+);
+
+startActivity(intent);
+```
+
+# 11. Final output kaisa hoga?
+
+DiWa - financially essential
+
+Screen 1: Splash
+
+Logo for 3 seconds
+
+creating-registration-screen
+
+Screen 2: Main
+
+Welcome + Registration form
+
+Screen 3: Detail
+
+Complete user information
+
+# 12. Assignment checklist
+
+| Requirement | Implementation |
+| --- | --- |
+| A. Splash Screen | SplashActivity + Handler |
+| B. Main Activity | LinearLayout + Welcome Toast |
+| C. Registration Form | 4 fields + Checkbox + Submit |
+| D. Detail Screen | DetailActivity |
+| E. SharedPreferences | Save and retrieve data |
+| E. Activity Lifecycle | onCreate(), onDestroy() etc. |
+| F. Intents | Splash → Main → Detail |
+
+Ab practical run karne ke steps:
+
+1. Saari 6 files create karo.
+2. Code respective files mein paste karo.
+3. Manifest replace karo.
+4. Android Studio mein Sync/Build complete hone do.
+5. Emulator ya mobile par Run button press karo.
+6. Form fill karke Submit press karo.
+7. Detail screen par information check karo.
+8. App close karke dobara open karo aur saved form data check karo.
+
+Exam tip: Agar teacher pooche ke tumne kaun se concepts implement kiye hain, to jawab dena: Android Activities, XML Layouts, Toast, EditText, Button, CheckBox, SharedPreferences, Activity Lifecycle aur Explicit Intents.
+
+
+
+
+
+
+
+
+acha yaar ab toosra question jo ke pehle Q 1 se link ha oper wala question (F) per khtm howa thaa ab me tume (g) batane laga hoo
+g)Redesign the interface using constraints layout or relative layout for responnsiveness
+H) Impelement Landscape qualifier to support multiple screen sizes.
+I) Add required permissions for internet access in AndriodManifest.xml
+J) Replece the default app icon with you custom logo.
+K) Ensure the app remains effieinct,user friendly and visually consistent.
+
+
+yeh sb requirement ha yeh oper wale sawal se link hum ne osi ke ander changes karni ha sahi sochh samjh ke batana agr koi question ha to pehle pouch lena to the point answer dena
+
+
+
+
+
+
+
+
+
+
+
+
+Bilkul sahi\! Ye Q1 ke continuation (G–K) hain. Hum naya project nahi banayenge. Pehle wale StudentFormApp mein hi changes karenge. Purane Java code, Activities, SharedPreferences aur Intents ko same rakhenge.
+
+Is question mein 5 changes karni hain.
+
+# 1. Updated project structure
+
+text
+
+```text
+StudentFormApp
+│
+├── java/com.example.studentformapp
+│   ├── SplashActivity.java
+│   ├── MainActivity.java
+│   └── DetailActivity.java
+│
+├── res
+│   ├── layout
+│   │   ├── activity_splash.xml
+│   │   ├── activity_main.xml
+│   │   └── activity_detail.xml
+│   │
+│   ├── layout-land
+│   │   ├── activity_main.xml
+│   │   └── activity_detail.xml
+│   │
+│   └── mipmap
+│       └── Custom App Icon
+│
+└── AndroidManifest.xml
+```
+
+# 2. Requirement G – ConstraintLayout
+
+Ab hum purane `LinearLayout` ko replace karke `ConstraintLayout` use karenge.
+
+Step 1: Android Studio mein `build.gradle (Module: app)` open karo.
+
+Dependencies mein ye add karo:
+
+gradle
+
+```gradle
+implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+```
+
+Agar pehle se dependency hai to dobara add mat karna.
+
+Step 2: `activity_main.xml` ka purana code remove karke ye paste karo.
+
+xml
+
+```xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Student Registration"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="#3F51B5"
+                android:gravity="center"
+                android:padding="15dp"/>
+
+            <Button
+                android:id="@+id/btnWelcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Welcome"/>
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Username"
+                android:inputType="textPersonName"/>
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Email"
+                android:inputType="textEmailAddress"/>
+
+            <EditText
+                android:id="@+id/etAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Address"
+                android:inputType="textPostalAddress"/>
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Password"
+                android:inputType="textPassword"/>
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I agree to terms and conditions"/>
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+Important: Andar ScrollView aur LinearLayout sirf fields ko vertically arrange karne ke liye hain. Outer layout ConstraintLayout hai.
+
+Java code change karne ki zaroorat nahi, kyun ke saare IDs same rakhe hain.
+
+# 3. Requirement H – Landscape Qualifier
+
+Landscape ka matlab mobile ko horizontal rotate karna.
+
+Iske liye Android Studio mein:
+
+1. `res` par right-click karo.
+2. New → Android Resource Directory.
+3. Resource type mein `layout` select karo.
+4. Available qualifiers mein `Orientation` select karo.
+5. Orientation mein `Landscape` select karo.
+6. OK press karo.
+
+Ab `res/layout-land` folder ban jayega.
+
+Android Studio: Creating landscape layouts - Stack Overflow
+
+[stackoverflow.com](<https://stackoverflow.com/questions/28815769/android-studio-creating-landscape-layouts?utm_source=chatgpt.com>)
+
+Step 2: `layout-land` folder mein `activity_main.xml` create karo.
+
+Ye code paste karo:
+
+xml
+
+```xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Student Registration"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <Button
+                android:id="@+id/btnWelcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Welcome"/>
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username"/>
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <EditText
+                android:id="@+id/etAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address"/>
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"/>
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I agree to terms"/>
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
+```
+
+Result: Portrait mein fields vertical hongi aur Landscape mein 2 columns mein show hongi.
+
+Detail Activity ke liye bhi isi tarah `layout-land/activity_detail.xml` bana sakte ho. Usmein existing detail screen ko horizontal arrangement mein adjust karo aur saare original TextView IDs same rakho.
+
+# 4. Requirement I – Internet Permission
+
+`AndroidManifest.xml` open karo.
+
+`<application>` tag se pehle ye permission add karo:
+
+xml
+
+```xml
+<uses-permission android:name="android.permission.INTERNET"/>
+```
+
+Complete Manifest:
+
+xml
+
+```xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission
+        android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:label="Student Form App"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar">
+
+        <activity
+            android:name=".DetailActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+
+    </application>
+
+</manifest>
+```
+
+Note: Internet permission tab kaam aayegi jab app internet access karegi. Current form aur SharedPreferences offline bhi work karte hain.
+
+# 5. Requirement J – Custom App Icon
+
+Ab default Android icon replace karenge.
+
+Steps:
+
+1. `res` par right-click karo.
+2. New → Image Asset.
+3. Icon Type mein Launcher Icons (Adaptive and Legacy) select karo.
+4. Foreground Layer mein apna logo/image select karo.
+5. Background color choose karo.
+6. Name `ic_launcher` rehne do.
+7. Next → Finish.
+
+アプリアイコンを作成する | Android Studio | Android Developers
+
+Mengubah ikon aplikasi | Android Developers
+
+Android Studio Image Asset Launcher Icon Background Color - Stack Overflow
+
+Ab Manifest ke application tag mein ye add karo:
+
+xml
+
+```xml
+android:icon="@mipmap/ic_launcher"
+```
+
+Example:
+
+xml
+
+```xml
+<application
+    android:icon="@mipmap/ic_launcher"
+    android:label="Student Form App"
+    android:theme="@android:style/Theme.Material.Light.NoActionBar">
+```
+
+Ab app ka custom logo launcher par show hoga.
+
+# 6. Requirement K – Efficiency, User Friendly & Visual Consistency
+
+Is requirement ke liye ye improvements implement karo:
+
+| Improvement | Implementation |
+| --- | --- |
+| Consistent design | Same colors and font sizes |
+| User friendly | Clear hints in EditText |
+| Responsive | ConstraintLayout + ScrollView |
+| Landscape support | layout-land folder |
+| Efficient storage | SharedPreferences |
+| Fast navigation | Explicit Intents |
+| Input validation | Empty field and email validation |
+| Better performance | Unused Handler callbacks remove karna |
+
+Color theme: Puri app mein `#3F51B5` blue aur white background use karo.
+
+# 7. Final testing
+
+In steps ko test karna:
+
+- [ ]App open karne par custom splash logo show ho.
+- [ ]3 seconds baad Main Activity open ho.
+- [ ]Welcome button par Toast aaye.
+- [ ]Form fill karke Submit karo.
+- [ ]Detail Activity mein data show ho.
+- [ ]App restart karne par saved data available ho.
+- [ ]Mobile rotate karne par Landscape layout aaye.
+- [ ]App launcher par custom icon show ho.
+- [ ]Internet permission Manifest mein present ho.
+
+## Exam mein G–K ka short explanation
+
+- G: ConstraintLayout provides flexible positioning of UI components and supports responsive screen design.
+- H: Landscape qualifier provides a separate layout for horizontal screen orientation using the `layout-land` folder.
+- I: INTERNET permission allows the application to access the internet.
+- J: Custom launcher icon replaces the default Android application icon.
+- K: Consistent colors, responsive layouts, input validation and efficient storage improve app usability and performance.
+
+Ek important baat: Purane Java code ko change nahi karna. Sirf XML layouts, Manifest aur launcher icon update karne hain. Is tarah Q1 ke A–F aur naye G–K ek hi project mein complete ho jayenge.
