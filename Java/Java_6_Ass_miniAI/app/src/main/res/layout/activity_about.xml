@@ -1,0 +1,202 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F4FF"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_gradient"
+            android:padding="22dp">
+
+            <TextView
+                android:id="@+id/btnBack"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:text="‹"
+                android:textColor="#FFFFFF"
+                android:textSize="38sp"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About Application"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginStart="12dp" />
+
+        </LinearLayout>
+
+        <!-- App Logo -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⛽"
+            android:textSize="75sp"
+            android:gravity="center"
+            android:layout_marginTop="30dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fuel Consumption Predictor"
+            android:textColor="#21166F"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Smart Prediction. Better Mileage."
+            android:textColor="#35A94B"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="8dp" />
+
+        <!-- Description Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="20dp"
+            android:layout_margin="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About This App"
+                android:textColor="#21166F"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fuel Consumption Predictor is an Android application that uses Machine Learning to estimate vehicle fuel efficiency in Miles Per Gallon (MPG). Simply enter your vehicle specifications and get an estimated result."
+                android:textColor="#625D80"
+                android:textSize="15sp"
+                android:lineSpacingExtra="5dp"
+                android:layout_marginTop="12dp" />
+
+        </LinearLayout>
+
+        <!-- Features Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="20dp"
+            android:layout_marginHorizontal="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Key Features"
+                android:textColor="#21166F"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="✓  Predict vehicle fuel efficiency"
+                android:textColor="#38316F"
+                android:textSize="15sp"
+                android:padding="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="✓  Machine Learning based predictions"
+                android:textColor="#38316F"
+                android:textSize="15sp"
+                android:padding="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="✓  Fast offline model inference"
+                android:textColor="#38316F"
+                android:textSize="15sp"
+                android:padding="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="✓  Simple and user-friendly interface"
+                android:textColor="#38316F"
+                android:textSize="15sp"
+                android:padding="8dp" />
+
+        </LinearLayout>
+
+        <!-- Technologies Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="20dp"
+            android:layout_margin="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Built With"
+                android:textColor="#21166F"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Python  •  TensorFlow  •  TensorFlow Lite"
+                android:textColor="#5142C5"
+                android:textSize="15sp"
+                android:padding="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Java  •  XML  •  Android Studio"
+                android:textColor="#5142C5"
+                android:textSize="15sp"
+                android:padding="8dp" />
+
+        </LinearLayout>
+
+        <!-- Footer -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Developed by Malik Saad Khawar\nVersion 1.0"
+            android:textColor="#77718F"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:lineSpacingExtra="5dp"
+            android:layout_marginTop="5dp" />
+
+    </LinearLayout>
+
+</ScrollView>

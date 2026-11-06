@@ -1,0 +1,235 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F4FF"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_gradient"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="28dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⛽"
+                android:textSize="48sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Fuel Predictor"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Smart Prediction. Better Mileage."
+                android:textColor="#E6E2FF"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!-- Main Content -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Discover your vehicle's fuel efficiency"
+                android:textColor="#25205B"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Input Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vehicle Information"
+                    android:textColor="#25205B"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- Engine Size -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="Engine Displacement (cubic inches)"
+                    android:textColor="#45416E"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etEngineSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="e.g. 140"
+                    android:inputType="numberDecimal"
+                    android:paddingHorizontal="14dp"
+                    android:textColor="#25205B"
+                    android:textColorHint="#9994B5" />
+
+                <!-- Cylinders -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Number of Cylinders"
+                    android:textColor="#45416E"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etCylinders"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="e.g. 4"
+                    android:inputType="number"
+                    android:paddingHorizontal="14dp"
+                    android:textColor="#25205B"
+                    android:textColorHint="#9994B5" />
+
+                <!-- Horsepower -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Horsepower (HP)"
+                    android:textColor="#45416E"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etHorsepower"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="e.g. 95"
+                    android:inputType="numberDecimal"
+                    android:paddingHorizontal="14dp"
+                    android:textColor="#25205B"
+                    android:textColorHint="#9994B5" />
+
+                <!-- Weight -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Vehicle Weight (pounds)"
+                    android:textColor="#45416E"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="e.g. 2500"
+                    android:inputType="numberDecimal"
+                    android:paddingHorizontal="14dp"
+                    android:textColor="#25205B"
+                    android:textColorHint="#9994B5" />
+
+                <!-- Predict Button -->
+                <Button
+                    android:id="@+id/btnPredict"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_button"
+                    android:backgroundTint="@null"
+                    android:text="Predict Fuel Efficiency"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- Result Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_card"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="22dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Predicted Fuel Efficiency"
+                    android:textColor="#45416E"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvResult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="-- MPG"
+                    android:textColor="#5142E8"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- About Button -->
+            <Button
+                android:id="@+id/btnAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#5142E8"
+                android:text="About This App"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF" />
+
+            <!-- Footer -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Powered by Machine Learning &amp; TensorFlow Lite"
+                android:textColor="#77718F"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
