@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">JAVA 3</string>
+    <string name="submit">Submit</string>
+    <string name="section">Section</string>
+    <string name="reg_no">Reg.NO</string>
+    <string name="semester">Semester</string>
+    <string name="saad_petrol_pump">Saad Petrol Pump</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

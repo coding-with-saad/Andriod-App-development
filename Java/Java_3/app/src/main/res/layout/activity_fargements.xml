@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fargments">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Fragements"
+        android:textSize="34sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnnews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="News" />
+
+        <Button
+            android:id="@+id/btnnotice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Notice" />
+
+        <Button
+            android:id="@+id/btnprofile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Profile" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:name="com.example.java3.NewsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/intent"
+                android:layout_width="164dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="#A9A36B"
+                android:gravity="center"
+                android:text="Fuel App"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.121"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Down"
+                app:layout_constraintVertical_bias="1.0" />
+
+
+            <Button
+                android:id="@+id/intent3"
+                android:layout_width="164dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="#A9A36B"
+                android:text="Counter App"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.121"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Down"
+                app:layout_constraintVertical_bias="1.0" />
+
+
+            <Button
+                android:id="@+id/intent2"
+                android:layout_width="164dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="#A9A36B"
+                android:gravity="center"
+                android:text="User Info"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.121"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Down"
+                app:layout_constraintVertical_bias="1.0" />
+
+
+        </LinearLayout>
+    </FrameLayout>
+
+
+
+
+</LinearLayout>

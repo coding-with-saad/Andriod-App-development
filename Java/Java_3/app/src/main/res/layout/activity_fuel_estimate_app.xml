@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fuel_Estimate_App">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="12dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/baseline_local_gas_station_24" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="180dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="#0A33EB"
+                android:gravity="center"
+                android:text="Fuel Estimator"
+                android:textColor="#4AFF00"
+                android:textSize="30sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="12dp"
+        app:contentPadding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/txtdist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Distance(KM)"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/txteffc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="14"
+                android:hint="Fuel Efficiency(KM/Liter)"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/txtfuel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:hint="Fuel Price (RS/Liter)"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btncost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FA0707"
+                android:text="Calculate Fuel Cost"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:background="#F80B0B"
+            android:gravity="center"
+            android:text="0 PKR"
+            android:textColor="#FFEB3B"
+            android:textSize="50dp" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="95dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/intent3"
+            android:layout_width="140dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="#A9A36B"
+            android:gravity="center"
+            android:text="Count App"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.121"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Down"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+        <Button
+            android:id="@+id/intent2"
+            android:layout_width="140dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="#A9A36B"
+            android:text="User Info"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.121"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Down"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+        <Button
+            android:id="@+id/intent4"
+            android:layout_width="140dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="#A9A36B"
+            android:text="Fragment App"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.121"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Down"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </LinearLayout>
+
+</LinearLayout>
